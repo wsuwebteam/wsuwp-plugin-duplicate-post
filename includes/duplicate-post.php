@@ -34,6 +34,7 @@ class Duplicate_Post {
 
 	}
 
+
 	public static function duplicate_post() {
 
 		// check if post ID has been provided and action
@@ -64,7 +65,7 @@ class Duplicate_Post {
 				'comment_status' => $post->comment_status,
 				'ping_status'    => $post->ping_status,
 				'post_author'    => $new_post_author,
-				'post_content'   => $post->post_content,
+				'post_content'   => str_replace( '\\', '\\\\', $post->post_content ),
 				'post_excerpt'   => $post->post_excerpt,
 				'post_name'      => $post->post_name . '-copy', // slug
 				'post_parent'    => $post->post_parent,
@@ -100,9 +101,9 @@ class Duplicate_Post {
 						continue;
 					}
 
-					foreach ( $meta_values as $meta_value ) {
-						add_post_meta( $new_post_id, $meta_key, $meta_value );
-					}
+					$current_value = get_post_meta( $post_id, $meta_key, true );
+					add_post_meta( $new_post_id, $meta_key, $current_value );
+
 				}
 			}
 
@@ -140,6 +141,7 @@ class Duplicate_Post {
 		}
 
 	}
+
 
 	public static function init() {
 
