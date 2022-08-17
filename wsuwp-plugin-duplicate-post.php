@@ -17,4 +17,6 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Initiate plugin
-require_once __DIR__ . '/includes/plugin.php';
+if ( is_admin() && defined( 'ISWDS' ) ) {
+	require_once __DIR__ . '/includes/plugin.php';
+}
