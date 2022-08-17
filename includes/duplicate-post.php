@@ -67,7 +67,7 @@ class Duplicate_Post {
 				'post_author'    => $new_post_author,
 				'post_content'   => str_replace( '\\', '\\\\', $post->post_content ),
 				'post_excerpt'   => $post->post_excerpt,
-				'post_name'      => $post->post_name . '-copy', // slug
+				'post_name'      => '', // slug
 				'post_parent'    => $post->post_parent,
 				'post_password'  => $post->post_password,
 				'post_status'    => 'draft',
